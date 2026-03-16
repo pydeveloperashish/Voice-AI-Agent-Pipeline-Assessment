@@ -1,4 +1,4 @@
-from llm_models import BaseLLM
+from .llm_models import BaseLLM
 
 class QuerySolving:
 
@@ -42,7 +42,7 @@ User transcript:
 
 if __name__ == "__main__":
 
-    from llm_models import OpenAILLM, OllamaLLM
+    from .llm_models import OpenAILLM, OllamaLLM
 
     model = OllamaLLM()
 

@@ -1,4 +1,4 @@
-from stt_models import BaseSTT
+from .stt_models import BaseSTT
 import os
 import sys
 
@@ -17,7 +17,7 @@ class TranscribeSTT:
 
 
 if __name__ == "__main__":
-    from stt_models import WhisperSTT
+    from .stt_models import WhisperSTT
 
     DEFAULT_AUDIOFILE = os.path.join(os.getcwd(), "sample_audio", "audio.m4a")
     if len(sys.argv) > 1:
