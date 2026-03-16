@@ -199,7 +199,6 @@ Trade-offs:
 Whisper was chosen because it provides a **good balance between
 simplicity, reliability, and local execution**.
 
-------------------------------------------------------------------------
 
 ## LLM: Local Ollama Model
 
