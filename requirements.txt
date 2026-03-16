@@ -1,1 +1,1 @@
-pip install -U openai-whisper
+openai-whisper
