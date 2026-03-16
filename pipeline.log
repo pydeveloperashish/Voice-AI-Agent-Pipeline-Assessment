@@ -1,0 +1,50 @@
+2026-03-16 09:03:20,967 - INFO - orchestrator.pipeline - Starting voice pipeline
+2026-03-16 09:03:20,967 - INFO - orchestrator.pipeline - Running STT step
+2026-03-16 09:03:22,499 - INFO - orchestrator.pipeline - Running LLM reasoning
+2026-03-16 09:03:28,099 - INFO - orchestrator.pipeline - Running LLM reasoning
+2026-03-16 09:03:59,203 - INFO - orchestrator.pipeline - Starting voice pipeline
+2026-03-16 09:03:59,204 - INFO - orchestrator.pipeline - Running STT step
+2026-03-16 09:04:00,828 - INFO - orchestrator.pipeline - Running LLM reasoning
+2026-03-16 09:04:05,651 - INFO - orchestrator.pipeline - Pipeline completed
+2026-03-16 09:06:44,718 - INFO - orchestrator.pipeline - Starting voice pipeline
+2026-03-16 09:06:44,718 - INFO - orchestrator.pipeline - Running STT Transcribe step
+2026-03-16 09:06:46,216 - INFO - orchestrator.pipeline - STT Transcribe completed
+2026-03-16 09:06:46,217 - INFO - orchestrator.pipeline - Running LLM Reasoning
+2026-03-16 09:06:54,183 - INFO - orchestrator.pipeline - LLM Reasoning completed
+2026-03-16 09:06:54,183 - INFO - orchestrator.pipeline - Pipeline completed
+2026-03-16 09:12:02,574 - INFO - orchestrator.pipeline - Starting voice pipeline
+2026-03-16 09:12:02,575 - INFO - orchestrator.pipeline - Running STT Transcribe step
+2026-03-16 09:12:03,374 - INFO - orchestrator.pipeline - Detected language: en
+2026-03-16 09:12:03,374 - INFO - orchestrator.pipeline - STT Transcribe completed
+2026-03-16 09:12:03,374 - INFO - orchestrator.pipeline - Running LLM Reasoning
+2026-03-16 09:12:08,171 - INFO - orchestrator.pipeline - Intent: reset_password | Confidence: 1.0
+2026-03-16 09:12:08,172 - INFO - orchestrator.pipeline - LLM Reasoning completed
+2026-03-16 09:12:08,172 - INFO - orchestrator.pipeline - Pipeline completed
+2026-03-16 09:14:24,271 - INFO - orchestrator.pipeline - Starting voice pipeline
+2026-03-16 09:14:24,271 - INFO - orchestrator.pipeline - Running STT Transcribe step
+2026-03-16 09:14:25,764 - INFO - orchestrator.pipeline - Detected language: en
+2026-03-16 09:14:25,765 - INFO - orchestrator.pipeline - STT Transcribe completed
+2026-03-16 09:14:25,765 - INFO - orchestrator.pipeline - Running LLM Reasoning
+2026-03-16 09:14:30,947 - INFO - orchestrator.pipeline - Intent: reset_password
+2026-03-16 09:14:30,947 - INFO - orchestrator.pipeline - Confidence: 1.0
+2026-03-16 09:14:30,947 - INFO - orchestrator.pipeline - Tool Calling: reset_password
+2026-03-16 09:14:30,948 - INFO - orchestrator.pipeline - LLM Reasoning completed
+2026-03-16 09:14:30,948 - INFO - orchestrator.pipeline - Pipeline completed
+2026-03-16 09:14:58,636 - INFO - orchestrator.pipeline - Starting voice pipeline
+2026-03-16 09:14:58,636 - INFO - orchestrator.pipeline - Running STT Transcribe step
+2026-03-16 09:14:59,932 - INFO - orchestrator.pipeline - Detected language: en
+2026-03-16 09:14:59,933 - INFO - orchestrator.pipeline - STT Transcribe completed
+2026-03-16 09:14:59,933 - INFO - orchestrator.pipeline - Running LLM Reasoning
+2026-03-16 09:15:03,687 - INFO - orchestrator.pipeline - Intent: reset_password | Confidence: 1.0
+2026-03-16 09:15:03,687 - INFO - orchestrator.pipeline - Tool Calling: reset_password
+2026-03-16 09:15:03,688 - INFO - orchestrator.pipeline - LLM Reasoning completed
+2026-03-16 09:15:03,688 - INFO - orchestrator.pipeline - Pipeline completed
+2026-03-16 09:16:10,289 - INFO - orchestrator.pipeline - Starting voice pipeline
+2026-03-16 09:16:10,290 - INFO - orchestrator.pipeline - Running STT Transcribe step
+2026-03-16 09:16:11,740 - INFO - orchestrator.pipeline - Detected language: en
+2026-03-16 09:16:11,741 - INFO - orchestrator.pipeline - STT Transcribe completed
+2026-03-16 09:16:11,741 - INFO - orchestrator.pipeline - Running LLM Reasoning
+2026-03-16 09:16:17,098 - INFO - orchestrator.pipeline - Intent: reset_password | Confidence: 1.0
+2026-03-16 09:16:17,099 - INFO - orchestrator.pipeline - Action: reset_password
+2026-03-16 09:16:17,099 - INFO - orchestrator.pipeline - LLM Reasoning completed
+2026-03-16 09:16:17,099 - INFO - orchestrator.pipeline - Pipeline completed
