@@ -14,13 +14,14 @@ logger = get_logger(__name__)
 
 class VoicePipeline:
 
-    def __init__(self, stt_service, llm_service):
+    def __init__(self, stt_service, llm_service, tts_stub_service):
         """
         stt_service: TranscribeSTT Object
         llm_service: request understanding Object
         """
         self.stt = stt_service
         self.llm = llm_service
+        self.tts_stub = tts_stub_service
         logger.info("Starting voice pipeline")
         
 
@@ -65,6 +66,11 @@ class VoicePipeline:
         logger.info(f"LLM latency: {llm_latency:.2f}s")
 
 
+        ######### STUB TTS ########################
+        response_text = analysis.get("notes", "")
+        tts_output = self.tts_stub.synthesize(response_text)
+
+
         # Step 4: Return final structured output
         logger.info("Pipeline completed")
         pipeline_latency = time.time() - pipeline_start
@@ -73,6 +79,7 @@ class VoicePipeline:
         return {
             "stt": stt_result,
             "llm": analysis,
+            "tts": tts_output,
             "latency": {
                 "stt_seconds": round(stt_latency, 3),
                 "llm_seconds": round(llm_latency, 3),
