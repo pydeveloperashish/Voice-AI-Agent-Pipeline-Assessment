@@ -80,18 +80,24 @@ using an LLM 3. Return structured output 4. Simulate a TTS step
 
 ## Modular Pipeline Architecture
 
-Each major component is isolated:
+Each major component is separated:
 
-STT → LLM Reasoning → Pipeline Orchestration
+STT → LLM Reasoning → Pipeline Orchestration → TTS
 
-This allows components to be swapped independently.
+This allows components to be swapped independently without modifying the
+pipeline.
 
-Examples: - STT can be replaced with Deepgram or AssemblyAI - LLM can be
-replaced with OpenAI or local Ollama models
+Examples:
+
+-   STT can be replaced with Deepgram or AssemblyAI
+-   LLM can be replaced with OpenAI or local models
+-   TTS can be replaced with real speech synthesis engines
+
+------------------------------------------------------------------------
 
 ## Dependency Injection
 
-The pipeline receives **services rather than concrete implementations**.
+The pipeline receives **services instead of concrete implementations**.
 
 Example:
 
@@ -99,35 +105,97 @@ Example:
 VoicePipeline(stt_service, llm_service)
 ```
 
-This keeps the pipeline independent of low-level implementations.
+This keeps the orchestration logic independent from specific model
+implementations.
+
+------------------------------------------------------------------------
 
 ## Structured LLM Outputs
 
-The LLM is instructed to return JSON with fields:
+The LLM is instructed to return structured JSON with fields:
 
 -   intent
 -   action
 -   confidence
 -   notes
 
-This allows downstream systems to easily consume the output.
+This makes the system easier to integrate with downstream automation.
 
-## Robustness
-
-Basic safeguards were implemented:
-
--   fallback for low confidence predictions
--   JSON parsing error handling
--   confidence normalization
--   validation of transcript output
+------------------------------------------------------------------------
 
 ## Observability
 
-The pipeline includes:
+The system includes:
 
 -   step-level latency measurements
 -   logging to console and file
--   clear structured outputs
+-   structured outputs for easier debugging
+
+------------------------------------------------------------------------
+
+# Model Choices and Trade-offs
+
+## Speech-to-Text: Whisper
+
+The pipeline uses **OpenAI Whisper** for speech-to-text.
+
+Reasons for choosing Whisper:
+
+-   Open-source and runs locally
+-   Strong multilingual transcription quality
+-   Easy integration with Python
+
+Trade-offs:
+
+-   Slower inference when running on CPU
+-   Cloud STT providers may offer lower latency and streaming support
+
+Whisper was chosen because it provides a **good balance between
+simplicity, reliability, and local execution**.
+
+------------------------------------------------------------------------
+
+## LLM: Local Ollama Model
+
+The reasoning step uses a **local Ollama model**:
+
+`lfm2.5-thinking:latest`
+
+Reasons for choosing a local model:
+
+-   Runs fully offline
+-   No API cost
+-   No external dependency
+-   Reproducible environment
+
+Trade-offs:
+
+-   Smaller local models may produce weaker reasoning compared to large
+    hosted models
+-   JSON output may occasionally require validation or fallback handling
+
+------------------------------------------------------------------------
+
+## Optional OpenAI Integration
+
+The pipeline is designed so the LLM provider can be easily swapped.
+
+To use OpenAI instead of a local model:
+
+1.  Add an API key in `.env`
+
+```{=html}
+<!-- -->
+```
+    OPENAI_API_KEY=your_key_here
+
+2.  Update `main.py`:
+
+``` python
+llm_model = OpenAILLM()
+```
+
+No other code changes are required.
 
 ------------------------------------------------------------------------
 
@@ -135,13 +203,15 @@ The pipeline includes:
 
 ## STT Errors
 
-Speech-to-text models may produce incorrect transcripts due to:
+Speech recognition may fail due to:
 
--   background noise
+-   noisy environments
 -   poor audio quality
--   accents or speech patterns
+-   accents or unclear speech
 
 This directly affects downstream reasoning.
+
+------------------------------------------------------------------------
 
 ## LLM Output Variability
 
@@ -151,27 +221,30 @@ LLMs may occasionally return:
 -   incorrect confidence values
 -   ambiguous intent classifications
 
-The pipeline includes fallback handling but cannot guarantee perfect
-outputs.
+The pipeline includes fallback handling to reduce crashes.
+
+------------------------------------------------------------------------
 
 ## Model Performance
 
-Local models (e.g., lfm2.5-thinking:latest) may produce weaker reasoning compared to
-larger hosted models.
+Local models may produce weaker reasoning compared to large hosted
+models.
+
+------------------------------------------------------------------------
 
 ## Latency Variability
 
-STT and LLM inference times may vary depending on:
+Latency may vary depending on:
 
--   hardware
+-   CPU vs GPU hardware
 -   model size
--   network latency (for API models)
+-   local vs remote inference
 
 ------------------------------------------------------------------------
 
 # Evaluation and Regression Testing
 
-To evaluate the pipeline, a small labeled dataset of audio samples could
+To evaluate the system, a small labeled dataset of audio samples could
 be maintained.
 
 Example:
@@ -181,42 +254,58 @@ Example:
   reset_password.wav     reset_password
   billing_question.wav   billing_support
 
-The pipeline could be run against this dataset and results compared with
-expected outputs to track accuracy and detect regressions.
+The pipeline could be executed against this dataset and predicted
+intents compared with expected outputs.
+
+Metrics could include:
+
+-   intent classification accuracy
+-   confidence score distribution
+-   failure rate of structured outputs
+
+This allows regression testing when prompts or models change.
 
 ------------------------------------------------------------------------
 
 # What I Would Improve With More Time
 
-## Streaming Audio Processing
+## Streaming Voice Processing
 
-Support real-time speech processing using WebRTC or streaming STT.
+Support real-time streaming audio instead of processing full audio
+files.
 
-## Structured Output Enforcement
+------------------------------------------------------------------------
 
-Use stricter schema validation to ensure LLM responses always follow the
-expected format.
+## Stronger Structured Output Validation
 
-## Improved Error Handling
+Introduce schema validation to guarantee LLM output format.
 
-Add retry strategies and stronger validation for LLM responses.
+------------------------------------------------------------------------
+
+## Better Error Handling
+
+Add retry logic and structured exception handling.
+
+------------------------------------------------------------------------
 
 ## Evaluation Framework
 
-Introduce automated regression testing with a labeled dataset and
-performance metrics.
+Build automated tests for labeled datasets and track performance
+metrics.
+
+------------------------------------------------------------------------
 
 ## Real TTS Integration
 
-Replace the stubbed TTS component with a real speech synthesis engine
-(e.g., ElevenLabs, Amazon Polly).
+Replace the stubbed TTS with real speech synthesis (e.g., ElevenLabs,
+Amazon Polly).
 
 ------------------------------------------------------------------------
 
 # Tech Stack
 
 -   Python
--   OpenAI / Ollama
 -   Whisper STT
--   Python logging
+-   Ollama LLM
+-   Logging and latency tracking
 -   Modular service-based architecture

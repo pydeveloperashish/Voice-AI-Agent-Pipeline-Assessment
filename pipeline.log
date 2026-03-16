@@ -170,3 +170,15 @@
 2026-03-16 13:57:04,574 - INFO - orchestrator.pipeline - LLM latency: 4.24s
 2026-03-16 13:57:04,574 - INFO - orchestrator.pipeline - Pipeline completed
 2026-03-16 13:57:04,575 - INFO - orchestrator.pipeline - Total pipeline latency: 5.00s
+2026-03-16 15:23:53,570 - INFO - orchestrator.pipeline - Starting voice pipeline
+2026-03-16 15:23:53,570 - INFO - orchestrator.pipeline - Running STT Transcribe step
+2026-03-16 15:23:54,412 - INFO - orchestrator.pipeline - Detected language: en
+2026-03-16 15:23:54,412 - INFO - orchestrator.pipeline - STT Transcribe completed
+2026-03-16 15:23:54,412 - INFO - orchestrator.pipeline - STT latency: 0.84s
+2026-03-16 15:23:54,413 - INFO - orchestrator.pipeline - Running LLM Reasoning
+2026-03-16 15:23:59,361 - INFO - orchestrator.pipeline - Intent: reset_password | Confidence: 1.0
+2026-03-16 15:23:59,361 - INFO - orchestrator.pipeline - Action: reset_password
+2026-03-16 15:23:59,362 - INFO - orchestrator.pipeline - LLM Reasoning completed
+2026-03-16 15:23:59,362 - INFO - orchestrator.pipeline - LLM latency: 4.95s
+2026-03-16 15:23:59,363 - INFO - orchestrator.pipeline - Pipeline completed
+2026-03-16 15:23:59,363 - INFO - orchestrator.pipeline - Total pipeline latency: 5.79s
