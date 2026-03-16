@@ -108,6 +108,52 @@ VoicePipeline(stt_service, llm_service)
 This keeps the orchestration logic independent from specific model
 implementations.
 
+
+------------------------------------------------------------------------
+
+## Open--Closed Principle
+
+The system follows the **Open--Closed Principle (OCP)**:
+
+> Software entities should be open for extension but closed for
+> modification.
+
+### LLM Layer
+
+A base abstraction is defined:
+
+    BaseLLM
+
+Concrete implementations extend it:
+
+    OpenAILLM
+    OllamaLLM
+
+Adding a new model requires **creating a new class that extends
+`BaseLLM`**, without modifying existing pipeline logic.
+
+Example future extension:
+
+    class ClaudeLLM(BaseLLM)
+    class GeminiLLM(BaseLLM)
+
+### STT Layer
+
+Similarly, STT implementations follow the same pattern:
+
+    BaseSTT
+       ↓
+    WhisperSTT
+
+Future implementations could include:
+
+    DeepgramSTT
+    AssemblyAISTT
+
+This design ensures the system is **easily extensible without modifying
+existing code**.
+
+
 ------------------------------------------------------------------------
 
 ## Structured LLM Outputs
@@ -244,8 +290,7 @@ Latency may vary depending on:
 
 # Evaluation and Regression Testing
 
-To evaluate the system, a small labeled dataset of audio samples could
-be maintained.
+A small labeled dataset of audio samples could be maintained.
 
 Example:
 
@@ -254,16 +299,14 @@ Example:
   reset_password.wav     reset_password
   billing_question.wav   billing_support
 
-The pipeline could be executed against this dataset and predicted
-intents compared with expected outputs.
+Evaluation process:
 
-Metrics could include:
+1.  Run pipeline on test dataset
+2.  Compare predicted intent vs expected intent
+3.  Track metrics such as accuracy and confidence distribution
 
--   intent classification accuracy
--   confidence score distribution
--   failure rate of structured outputs
+This allows detection of regressions when prompts or models change.
 
-This allows regression testing when prompts or models change.
 
 ------------------------------------------------------------------------
 

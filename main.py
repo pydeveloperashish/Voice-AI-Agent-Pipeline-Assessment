@@ -8,8 +8,8 @@ import json
 import os
 import sys
 
-DEFAULT_AUDIOFILE = os.path.join(os.path.dirname(__file__), "sample_audio", "audio.m4a")
 
+DEFAULT_AUDIOFILE = os.path.join(os.path.dirname(__file__), "sample_audio", "audio.m4a")
 
 def main():
     # Check if audio file was passed via CLI
