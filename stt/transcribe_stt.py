@@ -1,4 +1,4 @@
-from stt.stt_models import BaseSTT
+from stt_models import BaseSTT
 import os
 import sys
 

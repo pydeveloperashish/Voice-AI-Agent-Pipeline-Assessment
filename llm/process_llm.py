@@ -1,4 +1,4 @@
-from llm.llm_models import BaseLLM
+from llm_models import BaseLLM
 
 class QuerySolving:
 
