@@ -269,36 +269,11 @@ This allows regression testing when prompts or models change.
 
 # What I Would Improve With More Time
 
-## Streaming Voice Processing
-
-Support real-time streaming audio instead of processing full audio
-files.
-
-------------------------------------------------------------------------
-
-## Stronger Structured Output Validation
-
-Introduce schema validation to guarantee LLM output format.
-
-------------------------------------------------------------------------
-
-## Better Error Handling
-
-Add retry logic and structured exception handling.
-
-------------------------------------------------------------------------
-
-## Evaluation Framework
-
-Build automated tests for labeled datasets and track performance
-metrics.
-
-------------------------------------------------------------------------
-
-## Real TTS Integration
-
-Replace the stubbed TTS with real speech synthesis (e.g., ElevenLabs,
-Amazon Polly).
+- Streaming Voice Processing
+- Stronger Structured Output Validation
+- Better Error Handling
+- Evaluation Framework
+- Real TTS Integration
 
 ------------------------------------------------------------------------
 
