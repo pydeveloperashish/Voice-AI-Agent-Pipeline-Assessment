@@ -1,7 +1,8 @@
+from llm.llm_models import BaseLLM
 
 class QuerySolving:
 
-    def __init__(self, llm):
+    def __init__(self, llm: BaseLLM):
         self.llm = llm
 
     def analyze(self, transcript: str):

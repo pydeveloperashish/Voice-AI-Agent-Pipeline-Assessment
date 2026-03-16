@@ -1,8 +1,9 @@
+from stt.stt_models import BaseSTT
 import os
 import sys
 
 class TranscribeSTT:
-    def __init__(self, stt):
+    def __init__(self, stt: BaseSTT):
         self.stt = stt
 
     def transcribe(self, audio_path):
