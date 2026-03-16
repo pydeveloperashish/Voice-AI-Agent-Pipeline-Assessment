@@ -17,7 +17,7 @@ TTS)
 
 ``` bash
 git clone <repo_url>
-cd voice-agent-pipeline
+cd Voice-AI-Agent-Pipeline-Assessment
 ```
 
 ## 2. Create environment and install dependencies
@@ -30,10 +30,10 @@ pip install -r requirements.txt
 
 ## 3. (Optional) Install Ollama and pull a local model
 
-If using local models:
+If using local models for LLM generation:
 
 ``` bash
-ollama pull llama3
+ollama pull lfm2.5-thinking:latest
 ```
 
 ## 4. Run the pipeline
@@ -52,19 +52,24 @@ using an LLM 3. Return structured output 4. Simulate a TTS step
 ``` json
 {
   "stt": {
-    "transcript": "I forgot my password and cannot access my account",
+    "transcript": " Help me. I cannot access my account. I think I forgot my password. Can you help me with this?",
     "language": "en"
   },
   "llm": {
-    "intent": "reset_password",
+    "intent": "password_reset",
     "action": "reset_password",
-    "confidence": 0.91,
-    "notes": "User requested help resetting their password."
+    "confidence": 1.0,
+    "notes": "User requested assistance with password reset."
+  },
+  "tts": {
+    "audio_generated": false,
+    "message": "TTS generation simulated",
+    "text_response": "User requested assistance with password reset."
   },
   "latency": {
-    "stt_seconds": 2.34,
-    "llm_seconds": 0.71,
-    "total_seconds": 3.05
+    "stt_seconds": 0.826,
+    "llm_seconds": 6.033,
+    "total_seconds": 6.862
   }
 }
 ```
